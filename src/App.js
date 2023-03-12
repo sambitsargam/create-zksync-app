@@ -7,6 +7,10 @@ import "./App.css";
 // JSON containing ABI and Bytecode of compiled smart contracts
 import contractJson from "./artifacts-zk/contracts/Greeter.sol/Greeter.json";
 
+// Importing the Argent Wallet
+import Onboard from "@web3-onboard/core";
+import argentModule from "@web3-onboard/argent";
+
 function App() {
   const [mmStatus, setMmStatus] = useState("Not connected!");
   const [isConnected, setIsConnected] = useState(false);
@@ -38,8 +42,8 @@ function App() {
     })();
   }, []);
 
-  // Connect to Metamask wallet
-  async function connectWallet() {
+// connect wallet 
+  async function ConnectWallet() {
     // Check Metamask status
     if (window.ethereum) {
       setMmStatus("✅ Metamask detected!");
@@ -54,10 +58,35 @@ function App() {
       } catch (error) {
         console.log("Error: ", error);
       }
-    } else {
-      setMmStatus("⚠️ No wallet detected! Please install Metamask.");
     }
   }
+
+  // argent configuration
+  // Argent Wallet
+  const argent = argentModule();
+  // Connect to wallet
+  const onboard = Onboard({
+    // ... other Onboard options
+    wallets: [
+      argent,
+      // ... other wallets
+    ],
+    chains: [
+      {
+        id: "0x118", // = 280
+        token: "ETH",
+        label: "zkSync Goerli",
+        rpcUrl: "https://zksync2-testnet.zksync.dev",
+      },
+      // ... other chains
+    ],
+  });
+
+  // Connect to argent wallet
+  const ArgentConnect = async () => {
+    const connectedWallets = await onboard.connectWallet();
+    console.log(connectedWallets);
+  };
 
   // Read message from smart contract
   async function receive() {
@@ -85,25 +114,44 @@ function App() {
     <div className="App">
       {/* Metamask status */}
       <div className="text-center">
-        {getNetwork != "3141"
-          ? "Please make sure you're on the zkSync Era testnet network"
-          : mmStatus}
+        <h1>
+          {getNetwork !== 0x118
+            ? "Please make sure you're on the zkSync Era testnet network"
+            : mmStatus}
+        </h1>
       </div>
       <hr />
       <h1 className="text-center text-4xl font-bold mt-8">
         create-zksync-app template 🚀
       </h1>
       {/* Connect to Metamask */}
+
       <center>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-8 mb-6"
-          onClick={connectWallet}
-        >
-          Connect wallet
-        </button>
+        {isConnected && (
+          // Show message if connected
+          <div className="text-center text-xl mt-12">
+            {/* Show account address */}
+            <h1>Connected to {accountAddress}</h1>
+          </div>
+        )}
+        {!isConnected && (
+          <>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-8 mb-6"
+              onClick={ConnectWallet}
+            >
+              Connect with Metamask
+            </button>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-8 mb-6"
+              onClick={ArgentConnect}
+            >
+              Connect with Argent
+            </button>
+          </>
+        )}
       </center>
-      {/* Show account address */}
-      <div className="text-center text-xl">{accountAddress}</div>
+
       {/* Send message */}
       <center className="mt-12">
         <input
