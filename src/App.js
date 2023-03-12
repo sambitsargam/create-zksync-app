@@ -8,8 +8,7 @@ import "./App.css";
 import contractJson from "./artifacts-zk/contracts/Greeter.sol/Greeter.json";
 
 // Importing the Argent Wallet
-import Onboard from "@web3-onboard/core";
-import argentModule from "@web3-onboard/argent";
+import { getEthereumProvider } from "@argent/login";
 
 function App() {
   const [mmStatus, setMmStatus] = useState("Not connected!");
@@ -22,6 +21,24 @@ function App() {
   const [contractAddress, setContractAddress] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [txnHash, setTxnHash] = useState(null);
+
+  async function ArgentConnect() {
+    const ethereumProvider = await getEthereumProvider({
+      chainId: 280,
+      rpcUrl: "https://zksync2-testnet.zksync.dev",
+      walletConnect: {
+        metadata: {
+          name: "Cool dapp",
+          description: "Description of a cool dapp",
+          url: "https://example.com",
+          icons: [
+            "https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon.png?v=c78bd457575a",
+          ],
+        },
+      },
+    });
+    await ethereumProvider.enable();
+  }
 
   useEffect(() => {
     (async () => {
@@ -42,51 +59,24 @@ function App() {
     })();
   }, []);
 
-// connect wallet 
+  // Connect to Metamask
   async function ConnectWallet() {
-    // Check Metamask status
-    if (window.ethereum) {
-      setMmStatus("✅ Metamask detected!");
-      try {
-        // Metamask popup will appear to connect the account
-        const accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        // Get address of the account
-        setAccountAddress(accounts[0]);
-        setIsConnected(!isConnected);
-      } catch (error) {
-        console.log("Error: ", error);
-      }
+    // Check if Metamask is installed
+    if (typeof window.ethereum !== "undefined") {
+      // Request account access if needed
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+      // Get account address
+      const accounts = await window.ethereum.request({
+        method: "eth_accounts",
+      });
+      setAccountAddress(accounts[0]);
+      // Set Metamask status
+      setMmStatus("Connected!");
+      setIsConnected(true);
+    } else {
+      alert("Please install Metamask!");
     }
   }
-
-  // argent configuration
-  // Argent Wallet
-  const argent = argentModule();
-  // Connect to wallet
-  const onboard = Onboard({
-    // ... other Onboard options
-    wallets: [
-      argent,
-      // ... other wallets
-    ],
-    chains: [
-      {
-        id: "0x118", // = 280
-        token: "ETH",
-        label: "zkSync Goerli",
-        rpcUrl: "https://zksync2-testnet.zksync.dev",
-      },
-      // ... other chains
-    ],
-  });
-
-  // Connect to argent wallet
-  const ArgentConnect = async () => {
-    const connectedWallets = await onboard.connectWallet();
-    console.log(connectedWallets);
-  };
 
   // Read message from smart contract
   async function receive() {
