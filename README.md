@@ -2,13 +2,13 @@
     <img align="center" src="./src/logo.svg" width="175"></img>
 </p>
 
-<h1 align="center">create-zksync-dapp</h1>
+<h1 align="center">create-zksync-app</h1>
 
 <div align="center">
     <img src="https://img.shields.io/badge/platform-zksync-blue.svg?style=flat-square" alt="Platform">
-    <img src="https://img.shields.io/github/license/sambitsargam/create-zksync-dapp?color=orange&style=flat-square" alt="License">
-    <img src="https://img.shields.io/github/v/release/sambitsargam/create-zksync-dapp?color=blue&style=flat-square" alt="Release">
-    <img src="https://img.shields.io/npm/dw/create-zksync-dapp?style=flat-square" alt="Downloads">
+    <img src="https://img.shields.io/github/license/sambitsargam/create-zksync-app?color=orange&style=flat-square" alt="License">
+    <img src="https://img.shields.io/github/v/release/sambitsargam/create-zksync-app?color=blue&style=flat-square" alt="Release">
+    <img src="https://img.shields.io/npm/dw/create-zksync-app?style=flat-square" alt="Downloads">
 </div><br>
 
 A full-stack starter template with React & Hardhat to develop, deploy, and test Solidity smart contracts on the zk sync era network. The starter kit also includes pre-installed `zk sync hardhat full code`, `tailwindcss`, `web3.js`, etc. packages.
@@ -20,12 +20,12 @@ A full-stack starter template with React & Hardhat to develop, deploy, and test 
 
 ## 🛠️ Installation guide
 
-### ⌛️ create-zksync-dapp command
+### ⌛️ create-zksync-app command
 
 Open up your terminal (or command prompt) and type the following command:
 
 ```sh
-npx create-zksync-dapp <your-dapp-name>
+npx create-zksync-app <your-dapp-name>
 
 # cd into the directory
 cd <your-dapp-name>
@@ -52,7 +52,7 @@ yarn hardhat test
 
 After successful compilation, the artifacts directory will be created in `./src/artifacts` with a JSON `/contracts/<your-contracts>.sol/<your-contracts>.json` containing ABI and Bytecode of your compiled smart contracts.
 
-Please make the changes while [Importing](https://github.com/sambitsargam/create-zksync-dapp/blob/main/src/App.js#L8) the JSON in `./src/app.js`.
+Please make the changes while [Importing](https://github.com/sambitsargam/create-zksync-app/blob/main/src/App.js#L8) the JSON in `./src/app.js`.
 
 ### ⛓️ Deploy
 
@@ -66,7 +66,7 @@ For deploying the smart contracts to zksync network, type the following command:
 yarn hardhat deploy-zksync --script  deploy.ts
 ```
 
-Copy-paste the deployed contract address [here](https://github.com/sambitsargam/create-zksync-dapp/blob/main/src/App.js#L31)
+Copy-paste the deployed contract address [here](https://github.com/sambitsargam/create-zksync-app/blob/main/src/App.js#L31)
 
 ```sh
 <your-contract> deployed to: 0x...
@@ -84,7 +84,7 @@ npm start
 
 ## ⚖️ License
 
-create-zksync-dapp is licensed under the [MIT License](https://github.com/sambitsargam/create-zksync-dapp/blob/main/LICENSE).
+create-zksync-app is licensed under the [MIT License](https://github.com/sambitsargam/create-zksync-app/blob/main/LICENSE).
 
 <hr>
 Don't forget to leave a star ⭐️ ~ <a href="https://twitter.com/sambitsargam" target="_blank"><img src="https://img.shields.io/twitter/follow/sambitsargam?style=social" alt="twitter" /></a>

@@ -91,7 +91,7 @@ function App() {
       </div>
       <hr />
       <h1 className="text-center text-4xl font-bold mt-8">
-        create-zksync-dapp template 🚀
+        create-zksync-app template 🚀
       </h1>
       {/* Connect to Metamask */}
       <center>

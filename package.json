@@ -1,5 +1,5 @@
 {
-  "name": "create-dapp",
+  "name": "create-zksync-app",
   "version": "0.0.1",
   "description": "A full-stack starter template with React & Hardhat to develop, deploy, and test Solidity smart contracts on the zkSync_Era_testnet network.",
   "bin": "./bin/index.js",
@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sambitsargam/create-dapp"
+    "url": "https://github.com/sambitsargam/create-zksync-app"
   },
   "keywords": [
     "zkSync_Era",
