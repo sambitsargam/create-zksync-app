@@ -28,11 +28,11 @@ function App() {
       rpcUrl: "https://zksync2-testnet.zksync.dev",
       walletConnect: {
         metadata: {
-          name: "Cool dapp",
-          description: "Description of a cool dapp",
-          url: "https://example.com",
+          name: "create zksync app",
+          description: "A full-stack starter template with React & zk sync Hardhat to develop, deploy, and test Solidity smart contracts on the zk sync era network.",
+          url: "https://www.npmjs.com/package/create-zksync-app",
           icons: [
-            "https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon.png?v=c78bd457575a",
+            "https://github.com/sambitsargam/create-zksync-app/blob/HEAD/logo.svg",
           ],
         },
       },
