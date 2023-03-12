@@ -13,12 +13,22 @@
 
 A full-stack starter template with React & Hardhat to develop, deploy, and test Solidity smart contracts on the zk sync era network. The starter kit also includes pre-installed `zk sync hardhat full code`, `tailwindcss`, `web3.js`, etc. packages.
 
+
 ## 📺 Quickstart
 
 <div align="center">
 </div>
 
 ## 🛠️ Installation guide
+
+<img src="./demo.gif" alt="demo video"/>
+
+### Install the Package globally
+Install this for first time by running the following command in your terminal:
+
+```sh
+npm install -g create-zksync-app
+```
 
 ### ⌛️ create-zksync-app command
 
@@ -44,15 +54,21 @@ PRIVATE_KEY=1234
 Now, you can write your contracts in `./contracts/` directory, replace `Greeter.sol` with `<your-contracts>.sol` file. To write tests, go to `./test` directory and create `<your-contracts>.test.js`.
 
 ```sh
-yarn hardhat compile
+npx hardhat compile
 
 # for testing the smart contracts
-yarn hardhat test
+npx hardhat test
 ```
 
 After successful compilation, the artifacts directory will be created in `./src/artifacts` with a JSON `/contracts/<your-contracts>.sol/<your-contracts>.json` containing ABI and Bytecode of your compiled smart contracts.
 
 Please make the changes while [Importing](https://github.com/sambitsargam/create-zksync-app/blob/main/src/App.js#L8) the JSON in `./src/app.js`.
+
+### to Verify the contract 
+```sh
+npx hardhat verify <your-contract-address>
+
+
 
 ### ⛓️ Deploy
 
@@ -63,7 +79,7 @@ Also, make changes in `./scripts/deploy.js` (replace the greeter contract name w
 For deploying the smart contracts to zksync network, type the following command:
 
 ```sh
-yarn hardhat deploy-zksync --script  deploy.ts
+npx hardhat deploy-zksync --script  deploy.ts
 ```
 
 Copy-paste the deployed contract address [here](https://github.com/sambitsargam/create-zksync-app/blob/main/src/App.js#L31)
