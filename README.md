@@ -64,10 +64,6 @@ After successful compilation, the artifacts directory will be created in `./src/
 
 Please make the changes while [Importing](https://github.com/sambitsargam/create-zksync-app/blob/main/src/App.js#L8) the JSON in `./src/app.js`.
 
-### to Verify the contract 
-```sh
-npx hardhat verify <your-contract-address>
-```
 
 
 ### ⛓️ Deploy
@@ -80,6 +76,10 @@ For deploying the smart contracts to zksync network, type the following command:
 
 ```sh
 npx hardhat deploy-zksync --script  deploy.ts
+```
+### ⏭️ to Verify the contract 
+```sh
+npx hardhat verify <your-contract-address>
 ```
 
 Copy-paste the deployed contract address [here](https://github.com/sambitsargam/create-zksync-app/blob/main/src/App.js#L31)
